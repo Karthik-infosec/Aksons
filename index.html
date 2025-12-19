@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Aksons Technoverse</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Use any font you want; this is close to a modern Figma look -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <!-- HERO / LANDING -->
+  <header class="hero" id="home">
+    <!-- Decorative stripe images (you will upload these) -->
+    <img class="stripe stripe--tl" src="Yellow stripes top.png" alt="" />
+    <img class="stripe stripe--br" src="Yellowstripesbottom.png" alt="" />
+
+    <nav class="nav">
+      <div class="nav__spacer"></div>
+      <ul class="nav__links">
+        <li><a class="nav__link" href="#home">Home</a></li>
+        <li><a class="nav__link" href="#about">About Us</a></li>
+        <li><a class="nav__link" href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+
+    <div class="hero__content">
+      <img class="hero__logo" src="Aksonlogo.png" alt="Aksons Technoverse Logo" />
+
+      <h1 class="hero__title">UNDER CONSTRUCTION</h1>
+
+      <p class="hero__subtitle">
+        Don&rsquo;t Worry! Get to know us better now<br />
+        to enhance your business later
+      </p>
+
+      <a class="hero__scroll" href="#about" aria-label="Scroll to About Us">
+        <span class="hero__scrollText">Scroll</span>
+        <span class="hero__chev" aria-hidden="true"></span>
+      </a>
+    </div>
+  </header>
+
+  <!-- ABOUT -->
+  <main>
+    <section class="section about" id="about">
+      <!-- Optional: keep top stripes peeking like your design -->
+      <div class="about__topStripes"></div>
+
+      <div class="container">
+        <h2 class="section__kicker">ABOUT US</h2>
+
+        <p class="about__lead">
+          We are pleased to introduce our organization as a privately owned<br />
+          and professionally managed company registered under
+        </p>
+
+        <div class="about__location">
+          <!-- If you don't want this pin image, you can remove it -->
+          <img class="about__pin" src="mdi_location.png" alt="" />
+          <span>Sharjah Freezone, UAE</span>
+        </div>
+
+        <p class="about__mid">
+          Backed by a leadership team with extensive experience in
+        </p>
+
+        <!-- Timeline / connector -->
+        <div class="timeline">
+          <div class="timeline__item timeline__item--left">
+            <img class="timeline__icon" src="material-symbols_oil-barrel-rounded.png" alt="Oil Field" />
+            <div class="timeline__label">Oil Field</div>
+          </div>
+
+          <div class="timeline__line" aria-hidden="true">
+            <span class="timeline__node"></span>
+            <span class="timeline__stem"></span>
+          </div>
+
+          <div class="timeline__item timeline__item--right">
+            <img class="timeline__icon" src="powerplant.png" alt="Power Plant" />
+            <div class="timeline__label">Power Plant</div>
+          </div>
+
+          <div class="timeline__item timeline__item--bottom">
+            <img class="timeline__icon" src="energy.png" alt="Energy Sectors" />
+            <div class="timeline__label">Energy Sectors</div>
+          </div>
+        </div>
+
+        <!-- Quote block -->
+        <div class="quote">
+          <span class="quote__mark quote__mark--left">“</span>
+          <p class="quote__text">
+            <span class="quote__strong">Aksons Technoverse</span> has been established with a
+            <span class="quote__strong">clear objective</span><br />
+            To connect the right projects with the right contractors and ensure seamless<br />
+            execution with mutual satisfaction.
+          </p>
+          <span class="quote__mark quote__mark--right">”</span>
+        </div>
+
+        <!-- WHO WE ARE -->
+        <div class="who">
+          <h3 class="section__kicker section__kicker--small">WHO WE ARE</h3>
+
+          <p class="who__p">
+            <span class="who__strong">Aksons Technoverse</span> operates as a reliable
+            <span class="who__strong">project mediator and solutions partner</span>, bridging opportunities
+            between project owners and capable contractors.
+          </p>
+
+          <p class="who__p who__p--muted">
+            With strong industry expertise and a robust network, we ensure that each project is matched
+            with the most qualified execution team, resulting in
+          </p>
+
+          <div class="features">
+            <div class="feature">
+              <img class="feature__icon" src="tabler_clock-filled.png" alt="Timely Delivery" />
+              <div class="feature__text">Timely Delivery</div>
+            </div>
+
+            <div class="feature">
+              <img class="feature__icon" src="ic_baseline-diamond.png" alt="High Quality Output" />
+              <div class="feature__text">High Quality<br />Output</div>
+            </div>
+
+            <div class="feature">
+              <img class="feature__icon" src="customer_satisfactiono.png" alt="Complete Client Satisfaction" />
+              <div class="feature__text">Complete Client<br />Satisfaction</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT (simple placeholder section to match nav) -->
+    <section class="section contact" id="contact">
+      <div class="container">
+        <h2 class="section__kicker">CONTACT</h2>
+        <p class="contact__p">Add your contact form / details here.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <small>© <span id="year"></span> Aksons Technoverse</small>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
