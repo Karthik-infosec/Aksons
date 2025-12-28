@@ -1,24 +1,87 @@
 :root{
   --bg: #05070d;
-  --nav: rgba(9, 22, 62, 0.75);
   --text: rgba(245, 249, 255, 0.92);
   --muted: rgba(230, 240, 255, 0.72);
-  --accent: #27a9b8;        /* teal-ish text from your design */
-  --accent2: #0b2aef;       /* blue glow-ish */
-  --stroke: rgba(220, 235, 255, 0.20);
+  --accent: #27a9b8;
+  --stroke: rgba(220, 235, 255, 0.14);
 }
 
-*{ box-sizing: border-box; }
-html, body{ height: 100%; }
+/* =========================
+   Fade-up reveal
+========================= */
+.reveal{
+  opacity: 0;
+  transform: translateY(26px);
+  transition: opacity 1.1s ease, transform 1.1s ease;
+  will-change: opacity, transform;
+}
+.reveal.is-visible{
+  opacity: 1;
+  transform: translateY(0);
+}
+@media (prefers-reduced-motion: reduce){
+  .reveal{
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
+/* =========================
+   Base
+========================= */
+html, body{
+  height: 100%;
+  margin: 0;
+}
+
+html{
+  background: #05070d; /* fallback */
+}
+
 body{
   margin: 0;
   font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-  background: var(--bg);
   color: var(--text);
   overflow-x: hidden;
+
+  /* IMPORTANT: remove scrolling background from body */
+  background: transparent;
+  position: relative;
 }
 
-/* shared */
+/* ONE fixed background layer for the whole page (uniform, no seams) */
+body::before{
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+
+  background:
+    radial-gradient(900px 650px at 75% 20%, rgba(18, 70, 255, 0.38), rgba(0,0,0,0) 70%),
+    radial-gradient(900px 650px at 25% 70%, rgba(20, 185, 210, 0.20), rgba(0,0,0,0) 72%),
+    linear-gradient(180deg, var(--bg) 0%, var(--bg) 100%);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/* optional extra glow layer */
+body::after{
+  content: "";
+  position: fixed;
+  inset: -35%;
+  z-index: -1;
+  pointer-events: none;
+
+  background:
+    radial-gradient(900px 700px at 70% 40%, rgba(10, 55, 255, 0.32), rgba(0,0,0,0) 65%),
+    radial-gradient(900px 700px at 25% 70%, rgba(25, 190, 220, 0.16), rgba(0,0,0,0) 70%);
+  filter: blur(90px);
+  opacity: 0.9;
+}
+
+
 .container{
   width: min(1100px, calc(100% - 48px));
   margin: 0 auto;
@@ -43,7 +106,9 @@ body{
   font-size: 18px;
 }
 
-/* HERO */
+/* =========================
+   HERO
+========================= */
 .hero{
   position: relative;
   min-height: 92vh;
@@ -51,24 +116,8 @@ body{
   place-items: center;
   overflow: hidden;
 
-  /* black base + deep blue gradients similar to your Figma */
-  background:
-    radial-gradient(900px 600px at 72% 58%, rgba(24, 55, 255, 0.45), rgba(0,0,0,0) 65%),
-    radial-gradient(820px 520px at 35% 58%, rgba(15, 168, 195, 0.22), rgba(0,0,0,0) 70%),
-    linear-gradient(180deg, #05070d 0%, #05070d 100%);
-}
-
-/* big blurred ellipse layer (like your "blurred to 617") */
-.hero::before,
-.about::before{
-  content: "";
-  position: absolute;
-  inset: -25%;
-  background:
-    radial-gradient(700px 520px at 70% 55%, rgba(14, 68, 255, 0.55), rgba(0,0,0,0) 62%);
-  filter: blur(80px); /* approximates Figma blur feel */
-  opacity: 0.9;
-  pointer-events: none;
+  /* IMPORTANT: keep transparent so body background stays continuous */
+  background: transparent;
 }
 
 /* nav */
@@ -102,10 +151,7 @@ body{
   font-weight: 600;
   font-size: 16px;
 }
-
-.nav__link:hover{
-  color: white;
-}
+.nav__link:hover{ color: #fff; }
 
 /* hero content */
 .hero__content{
@@ -114,14 +160,12 @@ body{
   text-align: center;
   padding: 110px 16px 70px;
 }
-
 .hero__logo{
   width: 118px;
   height: auto;
   opacity: 0.95;
   margin-bottom: 26px;
 }
-
 .hero__title{
   margin: 0;
   font-size: clamp(34px, 5vw, 52px);
@@ -130,7 +174,6 @@ body{
   color: rgba(34, 191, 196, 0.80);
   text-transform: uppercase;
 }
-
 .hero__subtitle{
   margin: 14px 0 0;
   color: rgba(34, 191, 196, 0.78);
@@ -159,7 +202,6 @@ body{
   border-top: 8px solid rgba(34, 191, 196, 0.78);
   animation: bob 1.4s ease-in-out infinite;
 }
-
 @keyframes bob{
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(6px); }
@@ -173,14 +215,12 @@ body{
   user-select: none;
   opacity: 0.98;
 }
-
 .stripe--tl{
   top: 55px;
   left: -10px;
   width: min(760px, 85vw);
   transform: rotate(-3deg);
 }
-
 .stripe--br{
   right: -30px;
   bottom: -40px;
@@ -188,14 +228,9 @@ body{
   transform: rotate(-6deg);
 }
 
-/* ABOUT section background */
-.about{
-  background:
-    radial-gradient(760px 520px at 28% 55%, rgba(20, 170, 200, 0.35), rgba(0,0,0,0) 66%),
-    radial-gradient(900px 620px at 70% 55%, rgba(14, 68, 255, 0.35), rgba(0,0,0,0) 70%),
-    linear-gradient(180deg, #05070d 0%, #05070d 100%);
-}
-
+/* =========================
+   ABOUT
+========================= */
 .about__lead{
   text-align: center;
   margin: 0;
@@ -205,9 +240,10 @@ body{
   font-size: 20px;
 }
 
-.about__location{
+.about__location {
   margin: 18px auto 0;
-  display: inline-flex;
+  display: flex;
+  width: fit-content;
   align-items: center;
   gap: 10px;
   padding: 12px 18px;
@@ -221,6 +257,8 @@ body{
 .about__pin{
   width: 18px;
   height: 18px;
+  display: flex;
+  justify-content: center;
   object-fit: contain;
   opacity: 0.9;
 }
@@ -233,7 +271,7 @@ body{
   font-size: 18px;
 }
 
-/* timeline layout */
+/* timeline */
 .timeline{
   position: relative;
   margin: 40px auto 0;
@@ -244,13 +282,11 @@ body{
   align-items: center;
   gap: 18px 22px;
 }
-
 .timeline__item{
   text-align: center;
   color: rgba(230, 245, 255, 0.75);
   font-weight: 700;
 }
-
 .timeline__icon{
   width: 42px;
   height: 42px;
@@ -258,18 +294,10 @@ body{
   opacity: 0.9;
   margin-bottom: 8px;
 }
-
-.timeline__label{
-  font-size: 20px;
-}
-
+.timeline__label{ font-size: 20px; }
 .timeline__item--left{ grid-column: 1; grid-row: 1; }
 .timeline__item--right{ grid-column: 3; grid-row: 1; }
-.timeline__item--bottom{
-  grid-column: 2;
-  grid-row: 2;
-  transform: translateY(8px);
-}
+.timeline__item--bottom{ grid-column: 2; grid-row: 2; transform: translateY(8px); }
 
 .timeline__line{
   grid-column: 2;
@@ -281,7 +309,6 @@ body{
   background: rgba(220, 235, 255, 0.32);
   border-radius: 2px;
 }
-
 .timeline__node{
   position: absolute;
   left: 50%;
@@ -292,7 +319,6 @@ body{
   border-radius: 999px;
   transform: translate(-50%, -50%);
 }
-
 .timeline__stem{
   position: absolute;
   left: 50%;
@@ -310,7 +336,6 @@ body{
   width: min(980px, 94%);
   text-align: center;
 }
-
 .quote__text{
   margin: 0;
   color: rgba(230, 245, 255, 0.78);
@@ -318,9 +343,7 @@ body{
   font-size: 22px;
   line-height: 1.6;
 }
-
 .quote__strong{ color: rgba(255,255,255,0.94); font-weight: 800; }
-
 .quote__mark{
   position: absolute;
   top: -12px;
@@ -332,11 +355,8 @@ body{
 .quote__mark--left{ left: -10px; }
 .quote__mark--right{ right: -10px; top: auto; bottom: -22px; }
 
-/* WHO */
-.who{
-  margin-top: 40px;
-}
-
+/* who */
+.who{ margin-top: 40px; }
 .who__p{
   text-align: center;
   margin: 18px auto 0;
@@ -346,15 +366,12 @@ body{
   font-size: 20px;
   line-height: 1.7;
 }
-
 .who__p--muted{
   color: rgba(230, 245, 255, 0.62);
   margin-top: 18px;
 }
-
 .who__strong{ color: rgba(255,255,255,0.94); font-weight: 800; }
 
-/* features row */
 .features{
   margin: 42px auto 0;
   width: min(900px, 96%);
@@ -363,7 +380,6 @@ body{
   gap: 22px;
   align-items: center;
 }
-
 .feature{
   display: flex;
   align-items: center;
@@ -372,38 +388,209 @@ body{
   color: rgba(230, 245, 255, 0.78);
   font-weight: 700;
 }
-
 .feature__icon{
   width: 26px;
   height: 26px;
   object-fit: contain;
   opacity: 0.9;
 }
-
 .feature__text{
   font-size: 14px;
   line-height: 1.25;
 }
 
-/* CONTACT + footer */
-.contact{
-  background: #04060a;
-  border-top: 1px solid rgba(255,255,255,0.06);
-}
-.contact__p{
-  text-align: center;
-  color: rgba(230, 245, 255, 0.70);
-  margin: 10px 0 0;
+/* =========================
+   CORE FOCUS AREAS
+========================= */
+.focus{ padding-top: 30px; }
+
+.focusCard{
+  position: relative;
+  border-radius: 24px;
+  padding: 46px 46px 34px;
+  overflow: hidden;
+  background: rgba(0,0,0,0.55);
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.40);
 }
 
-.footer{
-  padding: 24px 0;
-  border-top: 1px solid rgba(255,255,255,0.06);
-  color: rgba(230, 245, 255, 0.60);
-  text-align: center;
+/* blue swirl vibe on right side (inside the CARD only) */
+.focusCard::after{
+  content: "";
+  position: absolute;
+  inset: -40% -25% -40% 35%;
+  background:
+    radial-gradient(700px 520px at 65% 45%, rgba(12, 42, 255, 0.65), rgba(0,0,0,0) 62%),
+    radial-gradient(520px 420px at 55% 65%, rgba(40, 210, 230, 0.16), rgba(0,0,0,0) 65%);
+  filter: blur(40px);
+  opacity: 0.9;
+  pointer-events: none;
 }
 
-/* responsive */
+.focusCard__title{
+  position: relative;
+  z-index: 1;
+  margin: 0 0 26px;
+  text-align: center;
+  font-size: clamp(28px, 3.2vw, 40px);
+  font-weight: 800;
+  color: rgba(255,255,255,0.95);
+}
+.focusCard__title span{
+  color: rgba(150, 115, 255, 0.95);
+}
+
+.focusList{
+  position: relative;
+  z-index: 1;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 18px;
+}
+
+.focusItem{
+  display: grid;
+  grid-template-columns: 26px 1fr;
+  gap: 14px;
+  align-items: start;
+}
+
+.focusItem__star{
+  font-size: 18px;
+  line-height: 1;
+  margin-top: 6px;
+  color: rgba(255,255,255,0.92);
+}
+
+.focusItem__head{
+  font-weight: 800;
+  font-size: 20px;
+  line-height: 1.15;
+  margin-bottom: 6px;
+}
+.focusItem__sub{
+  color: rgba(230, 245, 255, 0.76);
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 1.6;
+  max-width: 760px;
+}
+
+/* colored headings */
+.focusItem__head--pink{
+  background: linear-gradient(90deg, #ff2fb2, #6a5cff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.focusItem__head--teal{
+  background: linear-gradient(90deg, #2be7d1, #2d9bff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.focusItem__head--cyan{
+  background: linear-gradient(90deg, #2dd9ff, #b94bff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.focusItem__head--orange{
+  background: linear-gradient(90deg, #ffd400, #ff7a00);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.focusItem__head--green{
+  background: linear-gradient(90deg, #62ff74, #2de2ff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* =========================
+   WHY PARTNER
+========================= */
+.partner{ padding-top: 60px; }
+
+.partner__title{
+  margin: 0 0 42px;
+  text-align: center;
+  letter-spacing: 0.06em;
+  font-weight: 800;
+  color: rgba(190, 220, 255, 0.86);
+}
+
+.partnerGrid{
+  width: min(880px, 96%);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 44px 28px;
+  align-items: start;
+  justify-items: center;
+}
+
+/* make last row centered (2 items) */
+.partnerItem:nth-child(4){ grid-column: 1 / span 1; }
+.partnerItem:nth-child(5){ grid-column: 2 / span 1; }
+
+.partnerItem{
+  text-align: center;
+  max-width: 240px;
+}
+.partnerItem__icon{
+  width: 54px;
+  height: 54px;
+  object-fit: contain;
+  opacity: 0.95;
+  margin-bottom: 14px;
+}
+.partnerItem__text{
+  margin: 0;
+  color: rgba(190, 220, 255, 0.85);
+  font-weight: 600;
+  line-height: 1.55;
+  font-size: 14px;
+}
+
+/* =========================
+   CTA
+========================= */
+.cta{
+  padding-top: 30px;
+  padding-bottom: 120px;
+}
+
+.cta__title{
+  margin: 0;
+  font-size: clamp(44px, 6vw, 74px);
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  color: rgba(255,255,255,0.95);
+}
+.cta__title span{
+  display: inline-block;
+  background: linear-gradient(90deg, #2de2ff, #62ff74);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.cta__text{
+  margin: 26px 0 0;
+  width: min(860px, 96%);
+  color: rgba(190, 220, 255, 0.80);
+  font-weight: 600;
+  line-height: 1.7;
+  font-size: 20px;
+}
+
+/* =========================
+   Responsive
+========================= */
 @media (max-width: 900px){
   .nav{ padding: 0 18px; }
   .nav__links{ gap: 18px; }
@@ -418,10 +605,16 @@ body{
   .timeline__line{ grid-column: 1; grid-row: 3; width: 70%; margin: 0 auto; }
   .timeline__item--bottom{ grid-column: 1; grid-row: 4; transform: none; }
 
-  .features{
+  .features{ grid-template-columns: 1fr; gap: 14px; }
+
+  .partnerGrid{
     grid-template-columns: 1fr;
-    gap: 14px;
+    gap: 26px;
   }
+  .partnerItem:nth-child(4),
+  .partnerItem:nth-child(5){ grid-column: auto; }
+
+  .focusCard{ padding: 34px 22px 26px; }
 }
 
 @media (max-width: 520px){
@@ -429,4 +622,157 @@ body{
   .about__lead{ font-size: 16px; }
   .quote__text{ font-size: 16px; }
   .who__p{ font-size: 16px; }
+  .cta__text{ font-size: 16px; }
+}
+
+/* =========================================================
+   FINAL OVERRIDE: KILL ANY SECTION BACKGROUNDS & PSEUDOS
+   (This ensures NO "dividing lines" / "slide seams")
+========================================================= */
+.hero,
+.section,
+.about,
+.focus,
+.partner,
+.cta{
+  background: transparent !important;
+}
+
+.section::before,
+.section::after,
+.about::before,
+.about::after,
+.focus::before,
+.focus::after,
+.partner::before,
+.partner::after,
+.cta::before,
+.cta::after,
+.hero::before,
+.hero::after{
+  content: none !important;
+}
+
+/* =========================
+   CORE FOCUS (NEW TREE DESIGN)
+========================= */
+.focusTreeSection{
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+.focusTree{
+  position: relative;
+  width: min(1100px, 100%);
+  margin: 0 auto;
+  padding: 90px 0 70px;
+}
+
+/* SVG connector lines */
+.focusTree__lines{
+  position: absolute;
+  left: 50%;
+  top: 40px;
+  transform: translateX(-50%);
+  width: min(1000px, 96%);
+  height: 420px;
+  z-index: 0;
+}
+.focusTree__lines path{
+  fill: none;
+  stroke: rgba(190, 220, 255, 0.40);
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+
+/* Center node */
+.focusTree__node{
+  position: relative;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  margin-bottom: 44px;
+}
+.focusTree__logo{
+  width: 70px;
+  height: auto;
+  opacity: 0.95;
+  filter: drop-shadow(0 10px 20px rgba(0,0,0,0.35));
+}
+.focusTree__name{
+  margin-top: 10px;
+  letter-spacing: 0.32em;
+  font-weight: 800;
+  font-size: 18px;
+  color: rgba(120, 210, 255, 0.95);
+}
+
+/* Pills layout */
+.focusTree__pillsTop,
+.focusTree__pillsBottom{
+  position: relative;
+  z-index: 2;
+  display: flex;
+  gap: 26px;
+  align-items: center;
+}
+.focusTree__pillsTop{
+  justify-content: space-between;
+  width: min(1000px, 96%);
+  margin: 0 auto;
+  padding-top: 22px; /* aligns with SVG drops */
+}
+.focusTree__pillsBottom{
+  justify-content: center;
+  width: min(1000px, 96%);
+  margin: 46px auto 0;
+}
+
+/* Pill base */
+.focusPill{
+  min-width: 260px;
+  padding: 16px 26px;
+  border-radius: 14px;
+  text-align: center;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.95);
+  border: 1px solid rgba(255,255,255,0.10);
+  box-shadow:
+    0 18px 40px rgba(0,0,0,0.35),
+    0 0 0 1px rgba(0,0,0,0.15) inset;
+  backdrop-filter: blur(10px);
+}
+
+/* Pill color themes (match your Image 2 vibe) */
+.focusPill--pink{
+  background: linear-gradient(90deg, rgba(255, 0, 170, 0.85), rgba(190, 80, 255, 0.85));
+}
+.focusPill--teal{
+  background: linear-gradient(90deg, rgba(0, 220, 190, 0.85), rgba(0, 130, 255, 0.85));
+}
+.focusPill--purple{
+  background: linear-gradient(90deg, rgba(255, 70, 90, 0.85), rgba(190, 70, 255, 0.85));
+}
+.focusPill--yellow{
+  background: linear-gradient(90deg, rgba(255, 220, 0, 0.90), rgba(255, 110, 0, 0.90));
+  color: rgba(10, 20, 35, 0.92);
+}
+.focusPill--lavender{
+  background: linear-gradient(90deg, rgba(235, 175, 255, 0.85), rgba(120, 190, 255, 0.85));
+  color: rgba(10, 20, 35, 0.92);
+}
+
+/* Responsive */
+@media (max-width: 980px){
+  .focusTree__pillsTop{
+    flex-direction: column;
+    justify-content: center;
+  }
+  .focusTree__pillsBottom{
+    flex-direction: column;
+  }
+  .focusPill{ min-width: min(420px, 92vw); }
+  .focusTree__lines{ display: none; } /* hide lines on small screens for clean layout */
 }
