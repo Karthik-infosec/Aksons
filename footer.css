@@ -1,0 +1,130 @@
+/* ================= FOOTER ================= */
+
+.siteFooter{
+  position: relative;
+  background: #04060a;
+  color: rgba(230, 245, 255, 0.78);
+  overflow: hidden;
+}
+
+/* subtle blue glow */
+.siteFooter__bg{
+  position: absolute;
+  inset: -30%;
+  background:
+    radial-gradient(700px 500px at 70% 40%, rgba(18, 70, 255, 0.35), rgba(0,0,0,0) 65%),
+    radial-gradient(600px 420px at 30% 60%, rgba(20, 185, 210, 0.20), rgba(0,0,0,0) 70%);
+  filter: blur(80px);
+  opacity: 0.8;
+  pointer-events: none;
+}
+
+.siteFooter__container{
+  position: relative;
+  z-index: 1;
+  width: min(1200px, calc(100% - 48px));
+  margin: 0 auto;
+  padding: 80px 0 50px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 40px;
+}
+
+.footerCol__title{
+  margin: 0 0 14px;
+  font-weight: 800;
+  color: rgba(255,255,255,0.95);
+  font-size: 18px;
+}
+
+.footerCol__title--small{
+  font-size: 16px;
+}
+
+.footerCol__text{
+  margin: 0;
+  line-height: 1.7;
+  font-weight: 600;
+  font-size: 14px;
+  color: rgba(210, 230, 255, 0.75);
+}
+
+.footerLinks{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 10px;
+}
+
+.footerLinks li{
+  font-size: 14px;
+  font-weight: 600;
+  color: rgba(200, 225, 255, 0.75);
+}
+
+.footerLinks a{
+  color: rgba(200, 225, 255, 0.75);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.footerLinks a:hover{
+  color: #ffffff;
+}
+
+.footerLinks--plain li{
+  cursor: default;
+}
+
+/* social icons (text placeholders for now) */
+.footerSocials{
+  margin-top: 16px;
+  display: flex;
+  gap: 14px;
+}
+
+.footerSocials a{
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.06);
+  color: rgba(230,245,255,0.9);
+  font-weight: 800;
+  text-decoration: none;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.footerSocials a:hover{
+  background: rgba(255,255,255,0.14);
+  transform: translateY(-2px);
+}
+
+/* bottom bar */
+.siteFooter__bottom{
+  position: relative;
+  z-index: 1;
+  padding: 16px 24px;
+  text-align: center;
+  font-size: 13px;
+  font-weight: 600;
+  color: rgba(200, 225, 255, 0.65);
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+
+/* responsive */
+@media (max-width: 900px){
+  .siteFooter__container{
+    grid-template-columns: 1fr 1fr;
+    gap: 34px;
+  }
+}
+
+@media (max-width: 520px){
+  .siteFooter__container{
+    grid-template-columns: 1fr;
+    padding: 60px 0 40px;
+  }
+}
