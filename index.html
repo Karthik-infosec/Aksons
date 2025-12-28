@@ -7,31 +7,27 @@
   <link rel="stylesheet" href="styles.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <!-- Use any font you want; this is close to a modern Figma look -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="footer.css">
 </head>
 
 <body>
   <!-- HERO / LANDING -->
   <header class="hero" id="home">
-    <!-- Decorative stripe images (you will upload these) -->
     <img class="stripe stripe--tl" src="Yellow stripes top.png" alt="" />
     <img class="stripe stripe--br" src="Yellowstripesbottom.png" alt="" />
 
     <nav class="nav">
-      <div class="nav__spacer"></div>
       <ul class="nav__links">
         <li><a class="nav__link" href="#home">Home</a></li>
         <li><a class="nav__link" href="#about">About Us</a></li>
-        <li><a class="nav__link" href="#contact">Contact</a></li>
       </ul>
     </nav>
 
-    <div class="hero__content">
+    <!-- reveal -->
+    <div class="hero__content reveal">
       <img class="hero__logo" src="Aksonlogo.png" alt="Aksons Technoverse Logo" />
-
       <h1 class="hero__title">UNDER CONSTRUCTION</h1>
-
       <p class="hero__subtitle">
         Don&rsquo;t Worry! Get to know us better now<br />
         to enhance your business later
@@ -44,13 +40,11 @@
     </div>
   </header>
 
-  <!-- ABOUT -->
   <main>
+    <!-- ABOUT -->
     <section class="section about" id="about">
-      <!-- Optional: keep top stripes peeking like your design -->
-      <div class="about__topStripes"></div>
-
-      <div class="container">
+      <!-- reveal -->
+      <div class="container reveal">
         <h2 class="section__kicker">ABOUT US</h2>
 
         <p class="about__lead">
@@ -59,16 +53,14 @@
         </p>
 
         <div class="about__location">
-          <!-- If you don't want this pin image, you can remove it -->
           <img class="about__pin" src="mdi_location.png" alt="" />
-          <span>Sharjah Freezone, UAE</span>
+          <span>Shams Freezone, UAE</span>
         </div>
 
         <p class="about__mid">
           Backed by a leadership team with extensive experience in
         </p>
 
-        <!-- Timeline / connector -->
         <div class="timeline">
           <div class="timeline__item timeline__item--left">
             <img class="timeline__icon" src="material-symbols_oil-barrel-rounded.png" alt="Oil Field" />
@@ -91,7 +83,6 @@
           </div>
         </div>
 
-        <!-- Quote block -->
         <div class="quote">
           <span class="quote__mark quote__mark--left">“</span>
           <p class="quote__text">
@@ -103,7 +94,6 @@
           <span class="quote__mark quote__mark--right">”</span>
         </div>
 
-        <!-- WHO WE ARE -->
         <div class="who">
           <h3 class="section__kicker section__kicker--small">WHO WE ARE</h3>
 
@@ -135,26 +125,183 @@
             </div>
           </div>
         </div>
+
       </div>
     </section>
 
-    <!-- CONTACT (simple placeholder section to match nav) -->
-    <section class="section contact" id="contact">
-      <div class="container">
-        <h2 class="section__kicker">CONTACT</h2>
-        <p class="contact__p">Add your contact form / details here.</p>
+    <!-- CORE FOCUS AREAS -->
+<!-- CORE FOCUS AREAS (NEW DESIGN) -->
+<section class="section focus focusTreeSection" id="focus">
+  <div class="container reveal">
+
+    <div class="focusTree">
+      <!-- connector lines (behind pills) -->
+      <!--<svg class="focusTree__lines" viewBox="0 0 1000 420" aria-hidden="true"> -->
+        <!-- trunk -->
+        <path d="M500 115 L500 210" />
+        <!-- top horizontal -->
+        <path d="M170 210 L830 210" />
+        <!-- drops to top pills -->
+        <path d="M170 210 L170 265" />
+        <path d="M500 210 L500 265" />
+        <path d="M830 210 L830 265" />
+        <!-- drops to bottom pills -->
+        <path d="M365 210 L365 340" />
+        <path d="M635 210 L635 340" />
+      </svg>
+
+      <!-- center node -->
+      <div class="focusTree__node">
+        <img class="focusTree__logo" src="Aksonlogo.png" alt="Aksons Logo" />
+        <div class="focusTree__name">AKSONS</div>
+      </div>
+
+      <!-- pills -->
+      <div class="focusTree__pillsTop">
+        <div class="focusPill focusPill--pink">GENERAL TRADING</div>
+        <div class="focusPill focusPill--teal">E COMMERCE</div>
+        <div class="focusPill focusPill--purple">IT SERVICES</div>
+      </div>
+
+      <div class="focusTree__pillsBottom">
+        <div class="focusPill focusPill--yellow">MANAGEMENT CONSULTANCY</div>
+        <div class="focusPill focusPill--lavender">PROJECT MANAGEMENT</div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
+    <!-- WHY PARTNER WITH US -->
+    <section class="section partner" id="partner">
+      <!-- reveal -->
+      <div class="container reveal">
+        <h2 class="partner__title">WHY PARTNER WITH US?</h2>
+
+        <div class="partnerGrid">
+          <div class="partnerItem">
+            <img class="partnerItem__icon" src="hugeicons_body-part-muscle.png" alt="" />
+            <p class="partnerItem__text">Strong industry connections<br/>with trusted contractors</p>
+          </div>
+
+          <div class="partnerItem">
+            <img class="partnerItem__icon" src="bulb.png" alt="" />
+            <p class="partnerItem__text">Deep technical and sector-<br/>specific expertise</p>
+          </div>
+
+          <div class="partnerItem">
+            <img class="partnerItem__icon" src="flash.png" alt="" />
+            <p class="partnerItem__text">Commitment to transparency<br/>and timely delivery</p>
+          </div>
+
+          <div class="partnerItem">
+            <img class="partnerItem__icon" src="tailored.png" alt="" />
+            <p class="partnerItem__text">Tailored solutions for all scales<br/>of projects</p>
+          </div>
+
+          <div class="partnerItem">
+            <img class="partnerItem__icon" src="lineicons_hand-shake.png" alt="" />
+            <p class="partnerItem__text">A partnership approach aimed<br/>at long-term business growth</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LET’S WORK TOGETHER -->
+    <section class="section cta" id="work">
+      <!-- reveal -->
+      <div class="container reveal">
+        <h2 class="cta__title">
+          Let&rsquo;s Work<br />
+          <span>Together</span>
+        </h2>
+
+        <p class="cta__text">
+          We would be delighted to collaborate with your esteemed organization.<br />
+          We kindly request you to share any relevant enquiries, requirements, or
+          upcoming project details that align with our service portfolio. We assure
+          you of our full commitment, professional handling, and value-driven
+          support at every stage.
+        </p>
       </div>
     </section>
   </main>
 
-  <footer class="footer">
-    <div class="container">
-      <small>© <span id="year"></span> Aksons Technoverse</small>
+  <!-- FOOTER -->
+  <footer class="siteFooter">
+    <div class="siteFooter__bg"></div>
+
+    <div class="siteFooter__container reveal">
+      <div class="footerCol">
+        <h3 class="footerCol__title">Aksons Technoverse</h3>
+        <p class="footerCol__text">
+          Aksons Technoverse is a professionally managed organization delivering
+          project mediation, engineering coordination, and technology-driven
+          solutions across industrial sectors.
+        </p>
+      </div>
+
+      <div class="footerCol">
+        <h4 class="footerCol__title footerCol__title--small">Quick Links</h4>
+        <ul class="footerLinks">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#focus">Core Focus Areas</a></li>
+          <li><a href="#partner">Why Partner With Us</a></li>
+        </ul>
+      </div>
+
+      <div class="footerCol">
+        <h4 class="footerCol__title footerCol__title--small">Our Services</h4>
+        <ul class="footerLinks">
+          <li>Heavy Fabrication Works</li>
+          <li>Industrial &amp; Energy Support</li>
+          <li>Project Management Consultancy</li>
+          <li>IT &amp; Digital Solutions</li>
+        </ul>
+      </div>
+
+      <div class="footerCol">
+        <h4 class="footerCol__title footerCol__title--small">Contact</h4>
+        <ul class="footerLinks footerLinks--plain">
+          <li>Sharjah Freezone, UAE</li>
+          <li>Email: info@aksonstechnoverse.com</li>
+          <li>Phone: +971 XXX XXX XXX</li>
+        </ul>
+
+        <div class="footerSocials">
+          <a href="#" aria-label="LinkedIn">in</a>
+          <a href="#" aria-label="Twitter">𝕏</a>
+          <a href="#" aria-label="Instagram">◎</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="siteFooter__bottom">
+      © <span id="footerYear"></span> Aksons Technoverse. All rights reserved.
     </div>
   </footer>
 
+  <!-- Fade-up + footer year -->
   <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
+    // year
+    document.getElementById("footerYear").textContent = new Date().getFullYear();
+
+    // reveal on scroll (fade up)
+    const revealEls = document.querySelectorAll(".reveal");
+
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          io.unobserve(entry.target); // reveal once
+        }
+      });
+    }, { threshold: 0.15 });
+
+    revealEls.forEach(el => io.observe(el));
   </script>
 </body>
 </html>
